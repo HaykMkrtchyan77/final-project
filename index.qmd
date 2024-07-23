@@ -12,7 +12,9 @@ title: "My First Website"
 
 library(tidyverse)
 library(rgl)
-library("scatterplot3d")
+library(scatterplot3d)
+library(lattice)
+library(plotly)
 
 ```
 
