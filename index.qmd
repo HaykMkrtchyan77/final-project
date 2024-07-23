@@ -11,27 +11,152 @@ title: "My First Website"
 #| label: setup
 
 library(tidyverse)
-
-
+library(rgl)
+library("scatterplot3d")
 
 ```
 
 ```{r}
-diamonds |> 
-  filter(z != 0) |> 
-  filter(color == "D") |> 
-  ggplot(aes(x = carat, y = price, color = cut)) + 
-    geom_point() +
-    scale_y_continuous(labels = scales::dollar) +
-    labs(title = "Prices and Sizes for Diamonds of Color D",
-         subtitle = "'Round' carat values like 1, 1.5 and 2 are more common.",
-         x = "Carat",
-         y = "Price")
+data <- read_csv("vazgen.csv")
+data2 <- read_csv("sevan.csv")
+data3 <- read_csv("maralik.csv")
+
+```
 
 
+```{r}
+
+# Load necessary libraries
+library(tidyverse)
+library(lubridate)  
+
+data <- read.csv("vazgen.csv")
+
+data$time <- as.Date(data$time)
+
+# Create a season variable
+data <- data %>%
+  mutate(season = case_when(
+    month(time) %in% 3:5 ~ "Spring",
+    month(time) %in% 6:8 ~ "Summer",
+    month(time) %in% 9:11 ~ "Autumn",
+    month(time) %in% c(12, 1, 2) ~ "Winter"
+  ))
+
+data <- data %>%
+  mutate(day_of_year = yday(time))
+
+p <- ggplot(data, aes(x=day_of_year, y=temperature, color=season)) +
+  geom_line() +
+  scale_x_continuous(breaks = c(1, 91, 182, 274), labels = c("Winter", "Spring", "Summer", "Autumn")) +
+  labs(title = "Temperature Over Time by Season",
+       x = "Day of Year",
+       y = "Temperature",
+       color = "Season") +
+  theme_minimal() +
+  coord_polar(theta = "x")
+
+print(p)
+
+```
+
+
+```{r}
+
+library(tidyverse)
+library(lubridate)  
+
+data <- read.csv("sevan.csv")  
+
+
+data$time <- as.Date(data$time)
+
+data <- data %>%
+  mutate(season = case_when(
+    month(time) %in% 3:5 ~ "Spring",
+    month(time) %in% 6:8 ~ "Summer",
+    month(time) %in% 9:11 ~ "Autumn",
+    month(time) %in% c(12, 1, 2) ~ "Winter"
+  ))
+
+data <- data %>%
+  mutate(day_of_year = yday(time))
+
+p <- ggplot(data, aes(x = time, y = temperature, color = season)) +
+  geom_line() +
+  scale_x_continuous(breaks = c(1, 91, 182, 274), labels = c("Winter", "Spring", "Summer", "Autumn")) +
+  labs(title = "Temperature Over Time by Season",
+       x = "Day of Year",
+       y = "Temperature",
+       color = "Season") +
+  theme_minimal() +
+  coord_polar(theta = "x")
+
+print(p)
 
 
 ```
+
+
+```{r} 
+
+
+
+data <- iris
+
+mycolors <- c('royalblue1', 'darkcyan', 'oldlace')
+data$color <- mycolors[ as.numeric(data$Species) ]
+
+scatter3D(x, y, z, pch = 18,  theta = 20, phi = 20,
+          main = "Iris data", xlab = "Sepal.Length",
+          ylab ="Petal.Length", zlab = "Sepal.Width")
+
+htmlwidgets::saveWidget(rglwidget(width = 520, height = 520), 
+                        file = "HtmlWidget/3dscatter.html",
+                        libdir = "libs",
+                        selfcontained = FALSE
+                        )
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
