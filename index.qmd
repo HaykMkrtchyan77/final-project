@@ -11,17 +11,14 @@ title: "My First Website"
 #| label: setup
 
 library(tidyverse)
-library(rgl)
-library(scatterplot3d)
-library(lattice)
-library(plotly)
-
+library(lubridate)
 ```
 
 ```{r}
 data <- read_csv("vazgen.csv")
 data2 <- read_csv("sevan.csv")
 data3 <- read_csv("maralik.csv")
+data4 <- read_csv("gavar.csv")
 
 ```
 
@@ -48,7 +45,7 @@ data <- data %>%
 data <- data %>%
   mutate(day_of_year = yday(time))
 
-p <- ggplot(data, aes(x=day_of_year, y=temperature, color=season)) +
+p <- ggplot(data, aes(x=time, y=temperature, color=season)) +
   geom_line() +
   scale_x_continuous(breaks = c(1, 91, 182, 274), labels = c("Winter", "Spring", "Summer", "Autumn")) +
   labs(title = "Temperature Over Time by Season",
@@ -86,7 +83,7 @@ data <- data %>%
 
 p <- ggplot(data, aes(x = time, y = temperature, color = season)) +
   geom_line() +
-  scale_x_continuous(breaks = c(1, 91, 182, 274), labels = c("Winter", "Spring", "Summer", "Autumn")) +
+  scale_x_continuous() +
   labs(title = "Temperature Over Time by Season",
        x = "Day of Year",
        y = "Temperature",
@@ -101,29 +98,33 @@ print(p)
 
 
 ```{r} 
-
-
-
-data <- iris
-
-mycolors <- c('royalblue1', 'darkcyan', 'oldlace')
-data$color <- mycolors[ as.numeric(data$Species) ]
-
-scatter3D(x, y, z, pch = 18,  theta = 20, phi = 20,
-          main = "Iris data", xlab = "Sepal.Length",
-          ylab ="Petal.Length", zlab = "Sepal.Width")
-
-htmlwidgets::saveWidget(rglwidget(width = 520, height = 520), 
-                        file = "HtmlWidget/3dscatter.html",
-                        libdir = "libs",
-                        selfcontained = FALSE
-                        )
-
-
 ```
 
 
 
+```{r}
+
+library(ggplot2)
+library(plotly)
+library(gapminder)
+
+data4 <-  read_csv("gavar.csv")
+data3 <- read_csv("maralik.csv")
+
+
+combined <- rbind(data4,data3)
+
+p <- combined%>%
+  ggplot( aes(time, pressure , size = temperature, color=device)) +
+  geom_point(aes(color = device)) +
+  theme_bw()
+
+ggplotly(p)
+
+
+
+
+```
 
 
 
