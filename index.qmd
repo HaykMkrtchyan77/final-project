@@ -11,6 +11,7 @@ title: "My First Website"
 
 library(tidyverse)
 library(lubridate)
+library(ggplot2)
 ```
 
 ```{r}
@@ -18,12 +19,13 @@ data <- read_csv("vazgen.csv")
 data2 <- read_csv("sevan.csv")
 data3 <- read_csv("maralik.csv")
 data4 <- read_csv("gavar.csv")
+data5 <- read_csv("ashotsk.csv")
+data6 <- read.csv("artik.csv")
 
 ```
 
 ```{r}
 
-# Load necessary libraries
 library(tidyverse)
 library(lubridate)  
 
@@ -31,7 +33,6 @@ data <- read.csv("vazgen.csv")
 
 data$time <- as.Date(data$time)
 
-# Create a season variable
 data <- data %>%
   mutate(season = case_when(
     month(time) %in% 3:5 ~ "Spring",
@@ -81,7 +82,7 @@ data <- data %>%
 p <- ggplot(data, aes(x = time, y = temperature, color = season)) +
   geom_line() +
   scale_x_continuous() +
-  labs(title = "Temperature Over Time by Season",
+  labs(title = "Temperature Over Time by Season In Sevan",
        x = "Day of Year",
        y = "Temperature",
        color = "Season") +
@@ -93,8 +94,6 @@ print(p)
 
 ```
 
-```{r}
-```
 
 ```{r}
 
@@ -111,7 +110,8 @@ combined <- rbind(data4,data3)
 p <- combined%>%
   ggplot( aes(time, pressure , size = temperature, color=device)) +
   geom_point(aes(color = device)) +
-  theme_bw()
+  theme_bw() +
+  ggtitle("Temperature, Pressure Over Time In Gavar & Maralik")
 
 ggplotly(p)
 
@@ -119,3 +119,117 @@ ggplotly(p)
 
 
 ```
+
+
+
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(babynames)
+library(viridis)
+library(hrbrthemes)
+library(plotly)
+
+data5 <- read_csv("ashotsk.csv") 
+data5 <- data5 %>% 
+  select("pressure", "humidity", "pm2_5", "temperature", "time")
+
+p <- data5 %>% 
+  ggplot(aes(x = time, y = temperature, fill = temperature)) +
+  geom_area() +
+  theme(legend.position = "none") +
+  ggtitle("Temperature Over Time In Ashotsk") +
+  scale_fill_gradient(low = "yellow")
+
+p <- ggplotly(p, tooltip = c("x", "y", "fill"))
+
+p
+
+
+
+```
+
+
+
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(reshape2)
+library(plotly)
+
+
+data <- read.csv("artik.csv")
+
+data$time <- as.POSIXct(data$time, format="%Y-%m-%d %H:%M:%S")
+
+data_long <- melt(data, id.vars = "time", measure.vars = c("pm1", "pm2_5", "pm10"))
+
+plot_pm1 <- ggplot(subset(data_long, variable == "pm1"), aes(x = time, y = value)) +
+  geom_hex(bins = 70) +
+  scale_fill_viridis_c() +
+  labs(title = "Hexbin Plot for PM1", x = "Time", y = "PM1") +
+  theme_bw()
+
+interactive_pm1 <- ggplotly(plot_pm1)
+
+plot_pm2_5 <- ggplot(subset(data_long, variable == "pm2_5"), aes(x = time, y = value)) +
+  geom_hex(bins = 70) +
+  scale_fill_viridis_c() +
+  labs(title = "Hexbin Plot for PM2.5", x = "Time", y = "PM2.5") +
+  theme_bw()
+
+interactive_pm2_5 <- ggplotly(plot_pm2_5)
+
+plot_pm10 <- ggplot(subset(data_long, variable == "pm10"), aes(x = time, y = value)) +
+  geom_hex(bins = 70) +
+  scale_fill_viridis_c() +
+  labs(title = "Hexbin Plot for PM10", x = "Time", y = "PM10") +
+  theme_bw()
+
+interactive_pm10 <- ggplotly(plot_pm10)
+
+interactive_pm1
+interactive_pm2_5
+interactive_pm10
+
+
+```
+
+
+
+
+
+```{r}
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
