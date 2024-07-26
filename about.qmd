@@ -2,4 +2,7 @@
 title: "About"
 ---
 
-About this site
+
+In this page is dedicated to show information about different TUMO boxes climate, with information collected with Climatenet device.
+
+

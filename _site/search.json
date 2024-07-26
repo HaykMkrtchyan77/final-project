@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "In this page is dedicated to show information about different TUMO boxes climate, with information collected with Climatenet device."
   },
   {
     "objectID": "sources.html",
@@ -26,5 +26,19 @@
     "title": "sources",
     "section": "Running Code",
     "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "source1.html",
+    "href": "source1.html",
+    "title": "Source",
+    "section": "",
+    "text": "This page is created by TUMO Climatenet sources.\nhttps://climatenet.am/en/\nTUMO©"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TUMO boxes climate",
+    "section": "",
+    "text": "\"I combined data about Gavar & Maralik. You can choose some part of chart.\"\n\n\n\n\n\n\n\"Here, you can see Ashotsk data. If you put your coursor on chart, you can see time, temperature, pressure and speed.\"\n\n\n\n\n\n\"Under here, it's also Ashotsk data. Here you can see air quality in different indicators.\""
   }
 ]

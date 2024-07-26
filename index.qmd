@@ -1,5 +1,5 @@
 ---
-title: "My First Website"
+title: "TUMO boxes climate"
 execute: 
   echo: false
   warning: false
@@ -53,6 +53,7 @@ p <- ggplot(data, aes(x=time, y=temperature, color=season)) +
   labs(title = "Temperature Over Time by Season",
        x = "Day of Year",
        y = "Temperature",
+       subtitle = "I divided database info into seasons",
        color = "Season") +
   theme_minimal() +
   coord_polar(theta = "x")
@@ -88,6 +89,7 @@ p <- ggplot(data, aes(x = time, y = temperature, color = season)) +
   labs(title = "Temperature Over Time by Season In Sevan",
        x = "Day of Year",
        y = "Temperature",
+       subtitle = "In Sevan, Climatenet worked only in summer, so it only claimed info about summer",
        color = "Season") +
   theme_minimal() +
   coord_polar(theta = "x")
@@ -96,6 +98,7 @@ print(p)
 
 
 ```
+
 
 
 ```{r}
@@ -114,8 +117,9 @@ p <- combined %>%
 ggplot(aes(time, pressure , size = temperature, color=device)) +
   geom_point() +
   theme_bw() +
-  ggtitle("Temperature, Pressure Over Time In Gavar & Maralik")
-
+  labs(title = "Temperature, Pressure Over Time In Gavar & Maralik",
+       caption = "I combined data about Gavar & Maralik. You can choose some part of chart." )
+  # ggtitle("Temperature, Pressure Over Time In Gavar & Maralik") 
 ggplotly(p)
 
 
@@ -123,7 +127,7 @@ ggplotly(p)
 
 ```
 
-
+       "I combined data about Gavar & Maralik. You can choose some part of chart."
 
 
 
@@ -155,6 +159,16 @@ p
 ```
 
 
+    "Here, you can see Ashotsk data. If you put your coursor on chart, you can see time, temperature, pressure and speed."
+
+
+
+
+
+    "Under here, it's also Ashotsk data. Here you can see air quality in different indicators."
+
+
+
 
 
 ```{r, echo=FALSE, message=FALSE}
@@ -172,7 +186,9 @@ data_long <- melt(data, id.vars = "time", measure.vars = c("pm1", "pm2_5", "pm10
 plot_pm1 <- ggplot(subset(data_long, variable == "pm1"), aes(x = time, y = value)) +
   geom_hex(bins = 70) +
   scale_fill_viridis_c() +
-  labs(title = "Hexbin Plot for PM1", x = "Time", y = "PM1") +
+  labs(title = "
+    Air quality in Ashotsk.   Hexbin Plot for PM1
+       ", x = "Time", y = "PM1") +
   theme_bw()
 
 interactive_pm1 <- ggplotly(plot_pm1)
@@ -199,7 +215,6 @@ interactive_pm10
 
 
 ```
-
 
 
 
