@@ -144,7 +144,7 @@ data5 <- data5 %>%
   select("pressure", "humidity", "pm2_5", "temperature", "time")
 
 p <- data5 %>%
-ggplot(aes(x = time, y = temperature, fill = pressure, fill = humidity )) +
+ggplot(aes(x = time, y = temperature, fill = pressure )) +
   geom_area() +
   theme(legend.position = "none") +
   ggtitle("Temperature Over Time In Ashotsk") +
