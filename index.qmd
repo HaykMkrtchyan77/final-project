@@ -1,8 +1,11 @@
 ---
 title: "My First Website"
+execute: 
+  echo: false
+  warning: false
 ---
 
-```{r}
+```{r, echo=FALSE, message=FALSE}
 #| message: false
 
 #| echo: false
@@ -14,7 +17,7 @@ library(lubridate)
 library(ggplot2)
 ```
 
-```{r}
+```{r, echo=FALSE, message=FALSE}
 data <- read_csv("vazgen.csv")
 data2 <- read_csv("sevan.csv")
 data3 <- read_csv("maralik.csv")
@@ -24,7 +27,7 @@ data6 <- read.csv("artik.csv")
 
 ```
 
-```{r}
+```{r, echo=FALSE, message=FALSE}
 
 library(tidyverse)
 library(lubridate)  
@@ -58,7 +61,7 @@ print(p)
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 
 library(tidyverse)
 library(lubridate)  
@@ -107,9 +110,9 @@ data3 <- read_csv("maralik.csv")
 
 combined <- rbind(data4,data3)
 
-p <- combined%>%
-plot5 <-  ggplot( aes(time, pressure , size = temperature, color=device)) +
-  geom_point(aes(color = device)) +
+p <- combined %>%
+ggplot(aes(time, pressure , size = temperature, color=device)) +
+  geom_point() +
   theme_bw() +
   ggtitle("Temperature, Pressure Over Time In Gavar & Maralik")
 
@@ -124,7 +127,7 @@ ggplotly(p)
 
 
 
-```{r}
+```{r, echo=FALSE, message=FALSE}
 library(ggplot2)
 library(dplyr)
 library(babynames)
@@ -132,12 +135,12 @@ library(viridis)
 library(hrbrthemes)
 library(plotly)
 
-data5 <- read_csv("ashotsk.csv") 
-data5 <- data5 %>% 
+data5 <- read_csv("ashotsk.csv")
+data5 <- data5 %>%
   select("pressure", "humidity", "pm2_5", "temperature", "time")
 
-p <- data5 %>% 
-plot6 <-  ggplot(aes(x = time, y = temperature, fill = temperature)) +
+p <- data5 %>%
+ggplot(aes(x = time, y = temperature, fill = pressure, fill = speed )) +
   geom_area() +
   theme(legend.position = "none") +
   ggtitle("Temperature Over Time In Ashotsk") +
@@ -154,8 +157,7 @@ p
 
 
 
-```{r}
-# Load necessary libraries
+```{r, echo=FALSE, message=FALSE}
 library(ggplot2)
 library(reshape2)
 library(plotly)
@@ -202,10 +204,8 @@ interactive_pm10
 
 
 
-```{r echo = FALSE}
+```{r, echo=FALSE, message=FALSE}
 
-str(data)
-summary(data)
 
 library(ggplot2)
 
@@ -223,9 +223,7 @@ plot8 <- ggplot(data, aes(x=time, y=speed)) +
 
 ```
 
-```{r}
-print(plot8)
-```
+
 
 
 
