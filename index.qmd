@@ -127,7 +127,7 @@ ggplotly(p)
 
 ```
 
-       "I combined data about Gavar & Maralik. You can choose some part of chart."
+       I combined data about Gavar & Maralik. You can choose some part of chart.
 
 
 
@@ -159,13 +159,13 @@ p
 ```
 
 
-    "Here, you can see Ashotsk data. If you put your coursor on chart, you can see time, temperature, pressure and speed."
+    Here, you can see Ashotsk data. If you put your coursor on chart, you can see time, temperature, pressure and speed.
 
 
 
 
 
-    "Under here, it's also Ashotsk data. Here you can see air quality in different indicators."
+    Under here, it's also Ashotsk data. Here you can see air quality in different indicators.
 
 
 
